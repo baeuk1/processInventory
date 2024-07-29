@@ -1,10 +1,9 @@
-package com.ssg.api.rdc.inventory.linkage.ecms.mapper;
+package inventory.mapper;
 
-import com.ssg.api.rdc.inventory.linkage.ecms.domain.*;
+import inventory.domain.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import java.util.List;
 import java.util.Optional;
 
 @Mapper
@@ -14,11 +13,5 @@ public interface InventoryMapper {
 
     Optional<StoreItem> findStoreItem(@Param("strCd") String strCd, @Param("offlineItemId") String offlineItemId);
 
-    void saveInterface(VariableQuantity variableQuantity);
-
-    List<VariableQuantity> findInterface(VariableQuantity variableQuantity);
-
-    void updateProcessedInterface(VariableQuantity variableQuantity);
-
-    void callCmsCommInv(InventoryReflection inventoryReflection);
+    void callCommInv(InventoryQuantity inventoryQuantity);
 }

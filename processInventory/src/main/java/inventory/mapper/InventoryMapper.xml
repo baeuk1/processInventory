@@ -1,0 +1,41 @@
+<mapper namespace="inventory.mapper.InventoryMapper">
+
+<select id="findSaleStore" parameterType="string" resultType="inventory.domain.SaleStore">
+	/* InventoryMapper.xml inventory.mapper.InventoryMapper.findSaleStore baeukchoi 20240729 */
+	<![CDATA[
+		SELECT 	/*+ INDEX(S SALESTR_PK) */
+				S.SALESTR_NO
+		FROM 	SALESTORE 					S
+		WHERE 	S.SALESTORE_NO 				= #{salestrNo}
+	]]>
+</select>
+
+<select id="findStoreItem" resultType="inventory.domain.StoreItem">
+	/* InventoryMapper.xml inventory.mapper.InventoryMapper.findStoreItem baeukchoi 20240729 */
+	<![CDATA[
+		SELECT 	/*+ INDEX(CI CMS_STR_ITEM_PK)*/
+				BUY_FRM_CD
+			  , NVL(SELLPRC,0) 	AS SELLPRC
+			  , NVL(SPLPRC,0) 	AS SPLPRC
+		FROM 	CMS_STR_ITEM
+		WHERE 	STR_CD 			= #{strCd}
+		AND 	OFFLINE_ITEM_ID = #{offlineItemId}
+	]]>
+</select>
+
+<update id="callCommInv" statementType="CALLABLE" parameterType="inventory.domain.InventoryQuantity">
+	/* InventoryMapper.xml inventory.mapper.InventoryMapper.callCommInv baeukchoi 20240729 */
+	<![CDATA[
+		{ CALL SP_COMM_INV(
+				#{bizcndCd}
+			  , #{strCd}
+			  , #{offlineItemId}
+			  , #{operType}
+			  , #{operNo}
+			  , #{quantity}
+			  , #{errNo:VARCHAR, mode=OUT}
+			  , #{errMsg:VARCHAR, mode=OUT} 
+	    ) }
+    ]]>
+</update>
+</mapper>

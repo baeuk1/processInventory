@@ -24,7 +24,7 @@ public class InventoryController {
     @ApiOperation("재고차감 수신")
     @PostMapping("/reduceInventory")
     public ResponseDto<?> reduceInventory(
-            @ApiParam("재고차감 파라미터") @RequestBody @Valid final VariableRequest request) {
+            @ApiParam("재고차감 파라미터") @RequestBody @Valid final InventoryRequest request) {
 
     	inventoryService.reduceInventory(request.toEntity());
         return new ResponseDto<>(HttpStatus.OK.value(), "Success");
