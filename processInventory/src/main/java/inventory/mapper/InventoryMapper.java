@@ -11,7 +11,11 @@ public interface InventoryMapper {
 
     Optional<SaleStore> findSaleStore(@Param("salestrNo") String salestrNo);
 
-    Optional<StoreItem> findStoreItem(@Param("strCd") String strCd, @Param("offlineItemId") String offlineItemId);
+    Optional<StoreItem> findStoreItem(@Param("salestrNo") String salestrNo, @Param("skuCode") String skuCode);
+    
+    int getCurrentInventoryQuantity(@Param("salestrNo") String salestrNo, @Param("skuCode") String skuCode);
+    
+    String getPreventMinusQuantityByTypeCode(@Param("typeCode") String typeCode);
 
     void callCommInv(InventoryQuantity inventoryQuantity);
 }

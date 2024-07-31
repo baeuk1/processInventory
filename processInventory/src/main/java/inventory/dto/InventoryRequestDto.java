@@ -16,24 +16,24 @@ public class InventoryRequest {
     @NotBlank(message = "영업점번호(salestrNo)는 필수 값입니다.")
     private String salestrNo;
 
-    @ApiParam(value="오프라인상품ID", required = true)
-    @NotBlank(message = "오프라인상품ID(offlineItemId)는 필수 값입니다.")
-    private String offlineItemId;
+    @ApiParam(value="상품ID", required = true)
+    @NotBlank(message = "상품ID(skuCode)는 필수 값입니다.")
+    private String skuCode;
 
     @ApiParam(value="재고반영수량", required = true)
-    @NotNull(message = "재고반영수량(inventoryQuantity)는 필수 값입니다.")
-    private Integer inventoryQuantity;
+    @NotNull(message = "재고반영수량(quantity)는 필수 값입니다.")
+    private Integer quantity;
 
-    @ApiParam(value="재고반영사유코드", required = true)
-    @NotBlank(message = "재고반영사유코드(inventoryReasonCode)는 필수 값입니다.")
-    private String inventoryReasonCode;
+    @ApiParam(value="재고반영유형코드", required = true)
+    @NotBlank(message = "재고반영유형코드(typeCode)는 필수 값입니다.")
+    private String typeCode;
 
     public InventoryQuantity toEntity() {
         return InventoryQuantity.builder()
                         .salestrNo(this.salestrNo)
-                        .offlineItemId(this.offlineItemId)
-                        .inventoryQuantity(this.inventoryQuantity)
-                        .inventoryReasonCode(this.inventoryReasonCode)
+                        .skuCode(this.skuCode)
+                        .quantity(this.quantity)
+                        .typeCode(this.typeCode)
                         .build();
     }
 }

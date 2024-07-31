@@ -21,12 +21,12 @@ public class InventoryController {
 
     private final InventoryService inventoryService;
 
-    @ApiOperation("재고차감 수신")
-    @PostMapping("/reduceInventory")
-    public ResponseDto<?> reduceInventory(
-            @ApiParam("재고차감 파라미터") @RequestBody @Valid final InventoryRequest request) {
+    @ApiOperation("재고변동 수신")
+    @PostMapping("/reflectInventory")
+    public ResponseDto<?> reflectInventory(
+            @ApiParam("재고변동 파라미터") @RequestBody @Valid final InventoryRequest request) {
 
-    	inventoryService.reduceInventory(request.toEntity());
+    	inventoryService.reflectInventory(request.toEntity());
         return new ResponseDto<>(HttpStatus.OK.value(), "Success");
     }
 }

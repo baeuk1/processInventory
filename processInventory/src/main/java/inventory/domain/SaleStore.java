@@ -9,6 +9,4 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class SaleStore {
     private String salestrNo;
-    private String strCd;
-    private String bizcndCd;
 }
