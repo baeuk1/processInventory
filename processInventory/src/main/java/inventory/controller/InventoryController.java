@@ -26,7 +26,12 @@ public class InventoryController {
     public ResponseDto<?> reflectInventory(
             @ApiParam("재고변동 파라미터") @RequestBody @Valid final InventoryRequest request) {
 
-    	inventoryService.reflectInventory(request.toEntity());
+    	try {
+    		inventoryService.reflectInventory(request.toEntity());
+    	} catch(RuntimeException e) {
+    		return new ResponseDto<>(HttpStatus.BAD_REQUEST.value(), e.getMessage());
+    	}
+    	
         return new ResponseDto<>(HttpStatus.OK.value(), "Success");
     }
 }
